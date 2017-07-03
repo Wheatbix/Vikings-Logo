@@ -1,5 +1,13 @@
 <html>
   <head>
+    <script language="javascript" src="javascript/JSFX_Layer.js"></script>
+    <script language="javascript" src="javascript/JSFX_Mouse.js"></script>
+    <script language="javascript" src="javascript/JSFX_FadingTrail.js"></script>
+    <script language="javascript">
+      function JSFX_StartEffects() {
+        JSFX.FadingTrail(40, '009900', '000000', 2);
+      }
+    </script>
     <style>
       html, body {
         height: 100%;
@@ -57,7 +65,7 @@
       }
     </style>
   </head>
-  <body>
+  <body onLoad="JSFX_StartEffects()">
     <div class="main">
       <div class="wrapper hallucination-effect">
         <img src="https://image.ibb.co/gxAMFF/logo.png" />
