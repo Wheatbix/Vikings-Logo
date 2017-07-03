@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <style>
+      html, body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      .main {
+        height: 100%;
+        width: 100%;
+        display: table;
+      }
+      .wrapper {
+        display: table-cell;
+        height: 100%;
+        vertical-align: middle;
+      }
+      img {
+        width: 100%;
+      }
+      
+      @keyframes color-warp {
+        0%     { background-color: yellow; }
+        10%    { background-color: aliceblue; }
+        20%    { background-color: aquamarine; }
+        30%    { background-color: cornsilk; }
+        40%    { background-color: springgreen; }
+        50%    { background-color: hotpink; }
+        60%    { background-color: lavender; }
+        70%    { background-color: lightblue; }
+        80%    { background-color: lime; }
+        90%    { background-color: plum ; }
+        100%   { background-color: yellow; }
+      }
+      
+      @supports (mix-blend-mode: multiply) {
+        .hallucination-effect:before, 
+        .hallucination-effect:after {
+          display: block;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: inherit;
+          mix-blend-mode: multiply;
+          background-blend-mode: screen;
+        }
+        .hallucination-effect:after {
+          transform-origin: bottom right;
+          -moz-animation: color-warp 100s infinite;
+          -webkit-animation: color-warp 100s infinite;
+          animation: color-warp 100s infinite;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="wrapper hallucination-effect">
+        <img src="https://image.ibb.co/gxAMFF/logo.png" />
+      </div>
+    </div>
+  </body>
+</html>
