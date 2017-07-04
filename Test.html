@@ -1,5 +1,6 @@
 <html>
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
       body,
       html {
@@ -13,9 +14,28 @@
         margin: 0;
       }
     </style>
+    <script>
+      window.addEventListener('message', function (event) {
+        if (event.data.hasOwnProperty("FrameHeight") && event.data.hasOwnProperty("id")) {
+          var id = '#' + event.data.id;
+          $(id).css('height', event.data.FrameHeight);
+          console.log(event.data.FrameHeight);
+        }
+      });
+
+      function setIframeHeight(ifrm) {
+        $(ifrm).css("height", "auto");
+        var height = ifrm.contentWindow.postMessage({ id: ifrm.id, type: "FrameHeight"}, "*");   
+      }
+
+      $(window).on('resize', function() {
+        setIframeHeight($("#LogoFrame")[0]);
+        //setIframeHeight($("#ImagesFrame")[0]);
+      });
+    </script>
   </head>
   <body>
-    <iframe style='width: 100%; height: 100%; max-height: 200px; border: none; overflow: hidden;' src='Logo.html'></iframe>
-    <iframe id="ImageFrame" style='width: 100%; border: none; overflow: hidden;' src='Images.html'></iframe>
+    <iframe style='width: 100%; border: none; overflow: hidden;' onload='setIframeHeight(this)' src='Logo.html' id='LogoFrame'></iframe>
+    <iframe style='width: 100%; border: none; overflow: hidden;' onload='setIframeHeight(this)' src='Images.html' id='ImagesFrame'></iframe>
   </body>
 </html>

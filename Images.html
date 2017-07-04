@@ -7,14 +7,13 @@
       function JSFX_StartEffects() {
         JSFX.FadingTrail(40, '009900', '000000', 2);
       }
-      
       window.addEventListener('message', function (event) {
-        if (event.data == "FrameHeight") {
-          //Calculate the maximum height of the page
+        if (event.data != null && event.data.type == 'FrameHeight') {
           var body = document.body;
           var html = document.documentElement;
           var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-          event.source.postMessage({ "FrameHeight": height }, "*");
+          console.log(height);
+          event.source.postMessage({ id: event.data.id, 'FrameHeight': height }, '*');
         }
       });
     </script>

@@ -7,6 +7,15 @@
       function JSFX_StartEffects() {
         JSFX.FadingTrail(40, '009900', '000000', 2);
       }
+      window.addEventListener('message', function (event) {
+        if (event.data != null && event.data.type == 'FrameHeight') {
+          var body = document.body;
+          var html = document.documentElement;
+          var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+          console.log(height);
+          event.source.postMessage({ id: event.data.id, 'FrameHeight': height }, '*');
+        }
+      });
     </script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
