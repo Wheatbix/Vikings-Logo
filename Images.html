@@ -13,7 +13,7 @@
           //Calculate the maximum height of the page
           var body = document.body;
           var html = document.documentElement;
-          var height = Math.max(body.offsetHeight, html.clientHeight, html.offsetHeight);
+          var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
           event.source.postMessage({ "FrameHeight": height }, "*");
         }
       });
