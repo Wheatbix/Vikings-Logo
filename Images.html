@@ -11,13 +11,10 @@
       window.addEventListener('message', function (event) {
         if (event.data == "FrameHeight") {
           //Calculate the maximum height of the page
-          var body = document.body, html = document.documentElement;
-          var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-          
-          console.log(height);
-          
-          // Send height back to parent page "abc.com/page"
-          event.source.postMessage({ "FrameHeight": height }, "*");       
+          var body = document.body;
+          var html = document.documentElement;
+          var height = Math.max(body.offsetHeight, html.clientHeight, html.offsetHeight);
+          event.source.postMessage({ "FrameHeight": height }, "*");
         }
       });
     </script>
